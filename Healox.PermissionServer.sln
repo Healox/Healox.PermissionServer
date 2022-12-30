@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.Dom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.EntityFrameworkCore", "src\Healox.PermissionServer.EntityFrameworkCore\Healox.PermissionServer.EntityFrameworkCore.csproj", "{B46F7AED-AD61-425E-BA0B-0DADDB6C6316}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healox.PermissionServer", "src\Healox.PermissionServer\Healox.PermissionServer.csproj", "{9E924834-623B-4FB5-9593-73B7539B0735}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer", "src\Healox.PermissionServer\Healox.PermissionServer.csproj", "{9E924834-623B-4FB5-9593-73B7539B0735}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healox.PermissionServer.AdminAPI", "src\Healox.PermissionServer.AdminAPI\Healox.PermissionServer.AdminAPI.csproj", "{B2238309-E053-447D-A4D0-F78E08D0FB6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{9E924834-623B-4FB5-9593-73B7539B0735}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E924834-623B-4FB5-9593-73B7539B0735}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E924834-623B-4FB5-9593-73B7539B0735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2238309-E053-447D-A4D0-F78E08D0FB6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2238309-E053-447D-A4D0-F78E08D0FB6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2238309-E053-447D-A4D0-F78E08D0FB6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2238309-E053-447D-A4D0-F78E08D0FB6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
