@@ -11,7 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\Healox.PermissionServer.Domain.csproj" />
+    <ProjectReference Include="..\Domain\Healox.PermissionServer.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mappers\" />
+    <Folder Include="Stores\" />
   </ItemGroup>
 
 </Project>

@@ -4,6 +4,7 @@ using Healox.PermissionServer.EntityFramework.Storage.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.PermissionServerDb
 {
     [DbContext(typeof(PermissionServerDbContext))]
-    partial class PermissionServerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230101161349_PermissionServer")]
+    partial class PermissionServer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,10 +47,15 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                         .IsUnicode(false)
                         .HasColumnType("varchar(256)");
 
+                    b.Property<Guid?>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id")
                         .HasName("XPKIdentityRoles");
 
                     SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
+
+                    b.HasIndex("RoleId");
 
                     b.HasIndex(new[] { "Name" }, "XAKIdentityRoles_Name")
                         .IsUnique();
@@ -132,40 +140,6 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                     SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex(new[] { "Name" }, "XAKRoles_Name"));
 
                     b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.RoleMap", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("(newid())");
-
-                    b.Property<byte[]>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<Guid>("IdentityRoleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id")
-                        .HasName("XPKRoleMaps");
-
-                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
-
-                    b.HasIndex("RoleId");
-
-                    b.HasIndex(new[] { "IdentityRoleId" }, "XAKRoleMaps_IdentityRoleId")
-                        .IsUnique();
-
-                    b.HasIndex(new[] { "IdentityRoleId", "RoleId" }, "XAKRoleMaps_IdentityRoleId_RoleId")
-                        .IsUnique();
-
-                    b.ToTable("RoleMaps");
                 });
 
             modelBuilder.Entity("Healox.PermissionServer.Domain.Model.RolePermission", b =>
@@ -256,6 +230,16 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.IdentityRole", b =>
+                {
+                    b.HasOne("Healox.PermissionServer.Domain.Model.Role", "Role")
+                        .WithMany("IdentityRoles")
+                        .HasForeignKey("RoleId")
+                        .HasConstraintName("Roles_IdentityRoles");
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("Healox.PermissionServer.Domain.Model.Role", b =>
                 {
                     b.HasOne("Healox.PermissionServer.Domain.Model.Role", "ParentRole")
@@ -265,26 +249,6 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                         .HasConstraintName("Roles_Roles");
 
                     b.Navigation("ParentRole");
-                });
-
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.RoleMap", b =>
-                {
-                    b.HasOne("Healox.PermissionServer.Domain.Model.IdentityRole", "IdentityRole")
-                        .WithOne("RoleMap")
-                        .HasForeignKey("Healox.PermissionServer.Domain.Model.RoleMap", "IdentityRoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("IdentityRoles_RoleMaps");
-
-                    b.HasOne("Healox.PermissionServer.Domain.Model.Role", "Role")
-                        .WithMany("RoleMaps")
-                        .HasForeignKey("RoleId")
-                        .IsRequired()
-                        .HasConstraintName("Roles_RoleMaps");
-
-                    b.Navigation("IdentityRole");
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("Healox.PermissionServer.Domain.Model.RolePermission", b =>
@@ -327,11 +291,6 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.IdentityRole", b =>
-                {
-                    b.Navigation("RoleMap");
-                });
-
             modelBuilder.Entity("Healox.PermissionServer.Domain.Model.Permission", b =>
                 {
                     b.Navigation("RolePermissions");
@@ -339,9 +298,9 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
 
             modelBuilder.Entity("Healox.PermissionServer.Domain.Model.Role", b =>
                 {
-                    b.Navigation("InverseParentRole");
+                    b.Navigation("IdentityRoles");
 
-                    b.Navigation("RoleMaps");
+                    b.Navigation("InverseParentRole");
 
                     b.Navigation("RolePermissions");
 

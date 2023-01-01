@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Healox.PermissionServer.Domain.Model;
+using Healox.PermissionServer.EntityFramework.Storage.Entities;
 using Healox.PermissionServer.EntityFramework.Storage.Options;
 
 namespace Healox.PermissionServer.EntityFramework.Storage.Extensions
@@ -24,6 +24,8 @@ namespace Healox.PermissionServer.EntityFramework.Storage.Extensions
 
             modelBuilder.Entity<IdentityRole>(entity =>
             {
+                entity.ToTable(storeOptions.IdentityRole);
+
                 entity.HasKey(e => e.Id)
                     .HasName("XPKIdentityRoles")
                     .IsClustered(false);
@@ -40,10 +42,16 @@ namespace Healox.PermissionServer.EntityFramework.Storage.Extensions
                 entity.Property(e => e.Name)
                     .HasMaxLength(256)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Role).WithMany(p => p.IdentityRoles)
+                    .HasForeignKey(d => d.RoleId)
+                    .HasConstraintName("Roles_IdentityRoles");
             });
 
             modelBuilder.Entity<Permission>(entity =>
             {
+                entity.ToTable(storeOptions.Permission);
+
                 entity.HasKey(e => e.Id)
                     .HasName("XPKPermissions")
                     .IsClustered(false);
@@ -64,6 +72,8 @@ namespace Healox.PermissionServer.EntityFramework.Storage.Extensions
 
             modelBuilder.Entity<Role>(entity =>
             {
+                entity.ToTable(storeOptions.Role);
+
                 entity.HasKey(e => e.Id)
                     .HasName("XPKRoles")
                     .IsClustered(false);
@@ -88,33 +98,10 @@ namespace Healox.PermissionServer.EntityFramework.Storage.Extensions
                     .HasConstraintName("Roles_Roles");
             });
 
-            modelBuilder.Entity<RoleMap>(entity =>
-            {
-                entity.HasKey(e => e.Id)
-                    .HasName("XPKRoleMaps")
-                    .IsClustered(false);
-
-                entity.HasIndex(e => e.IdentityRoleId, "XAKRoleMaps_IdentityRoleId").IsUnique();
-
-                entity.HasIndex(e => new { e.IdentityRoleId, e.RoleId }, "XAKRoleMaps_IdentityRoleId_RoleId").IsUnique();
-
-                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-                entity.Property(e => e.ConcurrencyStamp)
-                    .IsRowVersion()
-                    .IsConcurrencyToken();
-
-                entity.HasOne(d => d.IdentityRole).WithOne(p => p.RoleMap)
-                    .HasForeignKey<RoleMap>(d => d.IdentityRoleId)
-                    .HasConstraintName("IdentityRoles_RoleMaps");
-
-                entity.HasOne(d => d.Role).WithMany(p => p.RoleMaps)
-                    .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Roles_RoleMaps");
-            });
-
             modelBuilder.Entity<RolePermission>(entity =>
             {
+                entity.ToTable(storeOptions.RolePermission);
+
                 entity.HasKey(e => e.Id)
                     .HasName("XPKRolePermissions")
                     .IsClustered(false);
@@ -140,6 +127,8 @@ namespace Healox.PermissionServer.EntityFramework.Storage.Extensions
 
             modelBuilder.Entity<User>(entity =>
             {
+                entity.ToTable(storeOptions.User);
+
                 entity.HasKey(e => e.Id)
                     .HasName("XPKUsers")
                     .IsClustered(false);
@@ -153,6 +142,8 @@ namespace Healox.PermissionServer.EntityFramework.Storage.Extensions
 
             modelBuilder.Entity<UserRole>(entity =>
             {
+                entity.ToTable(storeOptions.UserRole);
+
                 entity.HasKey(e => e.Id)
                     .HasName("XPKUserRoles")
                     .IsClustered(false);

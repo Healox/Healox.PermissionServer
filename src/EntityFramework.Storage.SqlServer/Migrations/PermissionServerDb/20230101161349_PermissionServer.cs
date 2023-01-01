@@ -12,21 +12,6 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "IdentityRoles",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "(newid())"),
-                    Name = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
-                    Description = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
-                    ConcurrencyStamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("XPKIdentityRoles", x => x.Id)
-                        .Annotation("SqlServer:Clustered", false);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Permissions",
                 columns: table => new
                 {
@@ -77,26 +62,21 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoleMaps",
+                name: "IdentityRoles",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "(newid())"),
-                    IdentityRoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
+                    Description = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ConcurrencyStamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("XPKRoleMaps", x => x.Id)
+                    table.PrimaryKey("XPKIdentityRoles", x => x.Id)
                         .Annotation("SqlServer:Clustered", false);
                     table.ForeignKey(
-                        name: "IdentityRoles_RoleMaps",
-                        column: x => x.IdentityRoleId,
-                        principalTable: "IdentityRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "Roles_RoleMaps",
+                        name: "Roles_IdentityRoles",
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "Id");
@@ -155,6 +135,11 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_IdentityRoles_RoleId",
+                table: "IdentityRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
                 name: "XAKIdentityRoles_Name",
                 table: "IdentityRoles",
                 column: "Name",
@@ -167,23 +152,6 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                 column: "Name",
                 unique: true)
                 .Annotation("SqlServer:Clustered", true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RoleMaps_RoleId",
-                table: "RoleMaps",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "XAKRoleMaps_IdentityRoleId",
-                table: "RoleMaps",
-                column: "IdentityRoleId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "XAKRoleMaps_IdentityRoleId_RoleId",
-                table: "RoleMaps",
-                columns: new[] { "IdentityRoleId", "RoleId" },
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_RolePermissions_PermissionId",
@@ -226,16 +194,13 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RoleMaps");
+                name: "IdentityRoles");
 
             migrationBuilder.DropTable(
                 name: "RolePermissions");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");
-
-            migrationBuilder.DropTable(
-                name: "IdentityRoles");
 
             migrationBuilder.DropTable(
                 name: "Permissions");

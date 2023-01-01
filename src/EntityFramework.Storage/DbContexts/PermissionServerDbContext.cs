@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Healox.PermissionServer.Domain.Model;
+using Healox.PermissionServer.EntityFramework.Storage.Entities;
 using Healox.PermissionServer.EntityFramework.Storage.Extensions;
 using Healox.PermissionServer.EntityFramework.Storage.Interfaces;
 using Healox.PermissionServer.EntityFramework.Storage.Options;
@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Healox.PermissionServer.EntityFramework.Storage.DbContexts
 {
-    public partial class PermissionServerDbContext : PermissionServerDbContext<PermissionServerDbContext>
+    public /*partial*/ class PermissionServerDbContext : PermissionServerDbContext<PermissionServerDbContext>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PermissionServerDbContext"/> class.
@@ -23,7 +23,7 @@ namespace Healox.PermissionServer.EntityFramework.Storage.DbContexts
         }
     }
 
-    public partial class PermissionServerDbContext<TContext> : DbContext, IPermissionServerDbContext
+    public /*partial*/ class PermissionServerDbContext<TContext> : DbContext, IPermissionServerDbContext
          where TContext : DbContext, IPermissionServerDbContext
     {
         private readonly PermissionServerStoreOptions storeOptions;
@@ -49,8 +49,6 @@ namespace Healox.PermissionServer.EntityFramework.Storage.DbContexts
 
         public virtual DbSet<Role> Roles { get; set; }
 
-        public virtual DbSet<RoleMap> RoleMaps { get; set; }
-
         public virtual DbSet<RolePermission> RolePermissions { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
@@ -65,11 +63,11 @@ namespace Healox.PermissionServer.EntityFramework.Storage.DbContexts
         {
             modelBuilder.ConfigurePermissionServerContext(storeOptions);
 
-            OnModelCreatingPartial(modelBuilder);
+            //OnModelCreatingPartial(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        //partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

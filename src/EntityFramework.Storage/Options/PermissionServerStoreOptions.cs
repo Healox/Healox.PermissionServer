@@ -42,7 +42,6 @@ namespace Healox.PermissionServer.EntityFramework.Storage.Options
         public TableConfiguration IdentityRole { get; set; } = new TableConfiguration("IdentityRoles");
         public TableConfiguration Permission { get; set; } = new TableConfiguration("Permissions");
         public TableConfiguration Role { get; set; } = new TableConfiguration("Roles");
-        public TableConfiguration RoleMap { get; set; } = new TableConfiguration("RoleMaps");
         public TableConfiguration RolePermission { get; set; } = new TableConfiguration("RolePermissions");
         public TableConfiguration User { get; set; } = new TableConfiguration("Users");
         public TableConfiguration UserRole { get; set; } = new TableConfiguration("UserRoles");

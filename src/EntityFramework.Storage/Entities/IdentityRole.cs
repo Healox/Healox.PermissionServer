@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Healox.PermissionServer.Domain.Model;
+namespace Healox.PermissionServer.EntityFramework.Storage.Entities;
 
 public partial class IdentityRole
 {

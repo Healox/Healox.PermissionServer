@@ -17,19 +17,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{5F230E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{8590C982-152E-45EF-B253-6EC89C164F68}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{6EFF150E-4828-47F6-8C37-873A73A589D8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage.SqlServer", "Storage.SqlServer", "{82C6541C-A890-4795-BD97-70F618701248}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.Domain", "src\Domain\Healox.PermissionServer.Domain.csproj", "{C8191D19-3D6D-4C44-BD3F-7BEF6D343B72}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.EntityFramework.Storage", "src\EntityFramework\Storage\Healox.PermissionServer.EntityFramework.Storage.csproj", "{07927345-2669-4C13-9A25-FA2DF57C997D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.EntityFramework.Storage", "src\EntityFramework.Storage\Healox.PermissionServer.EntityFramework.Storage.csproj", "{07927345-2669-4C13-9A25-FA2DF57C997D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.EntityFramework.Storage.SqlServer", "src\EntityFramework\Storage.SqlServer\Healox.PermissionServer.EntityFramework.Storage.SqlServer.csproj", "{0F0C7F2C-F1A7-4B33-9946-E757F57A9A42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.EntityFramework.Storage.SqlServer", "src\EntityFramework.Storage.SqlServer\Healox.PermissionServer.EntityFramework.Storage.SqlServer.csproj", "{0F0C7F2C-F1A7-4B33-9946-E757F57A9A42}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.Client", "src\Client\Healox.PermissionServer.Client.csproj", "{FE812358-4A68-4E1B-BC92-2532E7E0175B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer", "src\Server\Healox.PermissionServer.csproj", "{7D55914E-7FC8-459E-AD41-BD1CD8FBDF1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework.Storage", "EntityFramework.Storage", "{65FA8443-609C-4AAF-93E2-1B1A2AC2C552}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework.Storage.SqlServer", "EntityFramework.Storage.SqlServer", "{CFD99177-E336-4866-A70B-AEBF42595262}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.EntityFramework", "src\EntityFramework\Healox.PermissionServer.EntityFramework.csproj", "{B200F855-B22E-4050-BAAB-DA78ADE19885}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{7D55914E-7FC8-459E-AD41-BD1CD8FBDF1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D55914E-7FC8-459E-AD41-BD1CD8FBDF1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D55914E-7FC8-459E-AD41-BD1CD8FBDF1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B200F855-B22E-4050-BAAB-DA78ADE19885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B200F855-B22E-4050-BAAB-DA78ADE19885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B200F855-B22E-4050-BAAB-DA78ADE19885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B200F855-B22E-4050-BAAB-DA78ADE19885}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,13 +72,14 @@ Global
 		{AFF402F7-11BE-4386-8D90-889A7ED804E3} = {B6F4A469-0612-4B4C-93A5-3924E666DD19}
 		{5F230E7D-1DC3-405A-AA9C-BC6FBE1B1C28} = {B6F4A469-0612-4B4C-93A5-3924E666DD19}
 		{8590C982-152E-45EF-B253-6EC89C164F68} = {B6F4A469-0612-4B4C-93A5-3924E666DD19}
-		{6EFF150E-4828-47F6-8C37-873A73A589D8} = {AFF402F7-11BE-4386-8D90-889A7ED804E3}
-		{82C6541C-A890-4795-BD97-70F618701248} = {AFF402F7-11BE-4386-8D90-889A7ED804E3}
 		{C8191D19-3D6D-4C44-BD3F-7BEF6D343B72} = {8590C982-152E-45EF-B253-6EC89C164F68}
-		{07927345-2669-4C13-9A25-FA2DF57C997D} = {6EFF150E-4828-47F6-8C37-873A73A589D8}
-		{0F0C7F2C-F1A7-4B33-9946-E757F57A9A42} = {82C6541C-A890-4795-BD97-70F618701248}
+		{07927345-2669-4C13-9A25-FA2DF57C997D} = {65FA8443-609C-4AAF-93E2-1B1A2AC2C552}
+		{0F0C7F2C-F1A7-4B33-9946-E757F57A9A42} = {CFD99177-E336-4866-A70B-AEBF42595262}
 		{FE812358-4A68-4E1B-BC92-2532E7E0175B} = {529112F5-132B-463B-82C6-A50B1EC4E137}
 		{7D55914E-7FC8-459E-AD41-BD1CD8FBDF1D} = {5F230E7D-1DC3-405A-AA9C-BC6FBE1B1C28}
+		{65FA8443-609C-4AAF-93E2-1B1A2AC2C552} = {B6F4A469-0612-4B4C-93A5-3924E666DD19}
+		{CFD99177-E336-4866-A70B-AEBF42595262} = {B6F4A469-0612-4B4C-93A5-3924E666DD19}
+		{B200F855-B22E-4050-BAAB-DA78ADE19885} = {AFF402F7-11BE-4386-8D90-889A7ED804E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CFC6C382-110F-40FC-8D13-1383B04A6EDC}

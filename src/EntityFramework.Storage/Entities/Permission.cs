@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Healox.PermissionServer.Domain.Model;
+namespace Healox.PermissionServer.EntityFramework.Storage.Entities;
 
-public partial class IdentityRole
+public partial class Permission
 {
     public Guid Id { get; set; }
 
@@ -17,9 +17,7 @@ public partial class IdentityRole
 
     public string? Description { get; set; }
 
-    public Guid? RoleId { get; set; }
-
     public byte[]? ConcurrencyStamp { get; set; }
 
-    public virtual Role? Role { get; set; }
+    public virtual ICollection<RolePermission> RolePermissions { get; } = new List<RolePermission>();
 }
