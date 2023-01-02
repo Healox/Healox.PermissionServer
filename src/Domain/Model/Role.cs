@@ -15,25 +15,7 @@ public partial class Role
     // which would be a hassle without benefit.
     public string Name { get; set; } = null!;
 
-    public string? Description { get; set; }
+    public virtual ICollection<Role> ChildRoles { get; } = new List<Role>();
 
-    public Guid ParentRoleId { get; set; }
-
-    public byte[]? ConcurrencyStamp { get; set; }
-
-    public virtual ICollection<IdentityRole> IdentityRoles { get; } = new List<IdentityRole>();
-
-    public virtual ICollection<Role> InverseParentRole { get; } = new List<Role>();
-
-    // if you leave the field as non-nullable, the compiler will complain that it is not initialized by the constructors.
-    // (you can suppress that with null!)
-    // then the field can be used without null check.
-    // null! is used to assign null to non-nullable variables
-    // If you don't use null! in such cases, you'll have to use an exclamation mark every single time you read the variable.
-    // which would be a hassle without benefit.
-    public virtual Role ParentRole { get; set; } = null!;
-
-    public virtual ICollection<RolePermission> RolePermissions { get; } = new List<RolePermission>();
-
-    public virtual ICollection<UserRole> UserRoles { get; } = new List<UserRole>();
+    public virtual ICollection<Permission> Permissions { get; } = new List<Permission>();
 }

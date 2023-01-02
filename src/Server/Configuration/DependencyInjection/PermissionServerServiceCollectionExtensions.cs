@@ -16,7 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <param name="services">The services.</param>
         /// <returns></returns>
-        public static PermissionServerBuilder AddPermissionServerBuilder(this IServiceCollection services)
+        public static IPermissionServerBuilder AddPermissionServerBuilder(this IServiceCollection services)
         {
             return new PermissionServerBuilder(services);
         }

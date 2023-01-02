@@ -33,6 +33,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework.Storage.Sql
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.EntityFramework", "src\EntityFramework\Healox.PermissionServer.EntityFramework.csproj", "{B200F855-B22E-4050-BAAB-DA78ADE19885}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework.Storage.SqlServer.Seeding", "EntityFramework.Storage.SqlServer.Seeding", "{5826962A-96CB-45DD-A7BD-39ED7D01F042}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.EntityFramework.Storage.SqlServer.Seeding", "src\EntityFramework.Storage.SqlServer.Seeding\Healox.PermissionServer.EntityFramework.Storage.SqlServer.Seeding.csproj", "{D07AF8C1-CFDC-4D6D-A9EE-F4860EA89F0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,10 @@ Global
 		{B200F855-B22E-4050-BAAB-DA78ADE19885}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B200F855-B22E-4050-BAAB-DA78ADE19885}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B200F855-B22E-4050-BAAB-DA78ADE19885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D07AF8C1-CFDC-4D6D-A9EE-F4860EA89F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D07AF8C1-CFDC-4D6D-A9EE-F4860EA89F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D07AF8C1-CFDC-4D6D-A9EE-F4860EA89F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D07AF8C1-CFDC-4D6D-A9EE-F4860EA89F0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +88,8 @@ Global
 		{65FA8443-609C-4AAF-93E2-1B1A2AC2C552} = {B6F4A469-0612-4B4C-93A5-3924E666DD19}
 		{CFD99177-E336-4866-A70B-AEBF42595262} = {B6F4A469-0612-4B4C-93A5-3924E666DD19}
 		{B200F855-B22E-4050-BAAB-DA78ADE19885} = {AFF402F7-11BE-4386-8D90-889A7ED804E3}
+		{5826962A-96CB-45DD-A7BD-39ED7D01F042} = {B6F4A469-0612-4B4C-93A5-3924E666DD19}
+		{D07AF8C1-CFDC-4D6D-A9EE-F4860EA89F0B} = {5826962A-96CB-45DD-A7BD-39ED7D01F042}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CFC6C382-110F-40FC-8D13-1383B04A6EDC}
