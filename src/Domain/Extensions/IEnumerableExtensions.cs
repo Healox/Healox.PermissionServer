@@ -2,26 +2,23 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-#pragma warning disable 1591
+namespace Healox.PermissionServer.Domain.Extensions;
 
-namespace Healox.PermissionServer.Domain.Extensions
+internal static class IEnumerableExtensions
 {
-    internal static class IEnumerableExtensions
+    [DebuggerStepThrough]
+    public static bool IsNullOrEmpty<T>(this IEnumerable<T?> list)
     {
-        [DebuggerStepThrough]
-        public static bool IsNullOrEmpty<T>(this IEnumerable<T?> list)
+        if (list == null)
         {
-            if (list == null)
-            {
-                return true;
-            }
-
-            if (!list.Any())
-            {
-                return true;
-            }
-
-            return false;
+            return true;
         }
+
+        if (!list.Any())
+        {
+            return true;
+        }
+
+        return false;
     }
 }

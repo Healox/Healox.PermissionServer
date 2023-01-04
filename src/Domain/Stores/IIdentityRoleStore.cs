@@ -7,48 +7,49 @@ using System.Threading.Tasks;
 
 namespace Healox.PermissionServer.Domain.Stores;
 
-public interface IUserStore
+public interface IIdentityRoleStore
 {
     /// <summary>
-    /// Get the roles and permissions assigned to the current user directly
+    /// Get the roles and permissions assigned to current user identity roles
     /// </summary>
+    /// <param name="userId">The user Id</param>
     /// <returns>The roles</returns>
     Task<IEnumerable<Role?>> GetRolesAndPermissionsAsync();
 
     /// <summary>
-    /// Get the roles and permissions assigned to a user directly
+    /// Get the roles and permissions assigned to a specific identity role
     /// </summary>
     /// <param name="userId">The user Id</param>
     /// <returns>The roles</returns>
-    Task<IEnumerable<Role?>> GetRolesAndPermissionsAsync(string userId);
+    Task<IEnumerable<Role?>> GetRolesAndPermissionsAsync(string identityRoleName);
 
     /// <summary>
-    /// Finds out if current user belongs directly to a specific role
+    /// Finds out if the current user belongs to a PermissionServer specific role through its identity roles
     /// </summary>
     /// <param name="roleName">The role name</param>
     /// <returns>true or false</returns>
     Task<bool> IsInRoleAsync(string roleName);
 
     /// <summary>
-    /// Finds out if a user belongs directly to a specific role
+    /// Finds out if an identity role is a memeber of a PermissionServer specific role
     /// </summary>
-    /// <param name="roleName">The role name</param>
-    /// <param name="userId">The user identifier</param>
+    /// <param name="roleName">The PermissionServer role name</param>
+    /// <param name="identityRoleName">The identity role name</param>
     /// <returns>true or false</returns>
-    Task<bool> IsInRoleAsync(string roleName, string userId);
+    Task<bool> IsInRoleAsync(string roleName, string identityRoleName);
 
     /// <summary>
-    /// Finds out if current user has a specific permission
+    /// Finds out if the current user has a specific permission through its identity role
     /// </summary>
     /// <param name="permissionName">The permission name</param>
     /// <returns>true or false</returns>
     Task<bool> HasPermissionAsync(string permissionName);
 
     /// <summary>
-    /// Finds out if a user has a specific permission
+    /// Finds out if an identity role has a specific permission
     /// </summary>
     /// <param name="permissionName">The permission name</param>
-    /// <param name="userId">The user identifier</param>
+    /// <param name="identityRoleName">The identity role name</param>
     /// <returns>true or false</returns>
-    Task<bool> HasPermissionAsync(string permissionName, string userId);
+    Task<bool> HasPermissionAsync(string permissionName, string identityRoleName);
 }
