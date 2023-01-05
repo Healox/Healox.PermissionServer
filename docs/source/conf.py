@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Healox.PermissionServer'
-copyright = '2023, Healox Inc.'
+copyright = '2023, Healox'
 author = 'Walid-Abdulrazik'
 release = '0.1'
 
