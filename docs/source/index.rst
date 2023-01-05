@@ -10,7 +10,9 @@ Welcome to Healox.PermissionServer's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+ASP.NET Core Custom Authorization Policy Provider. A server that uses user roles and permissions for authorizing access to resources.
 
+Documentation is still under construction!
 
 Indices and tables
 ==================
