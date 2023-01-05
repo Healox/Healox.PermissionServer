@@ -4,3 +4,5 @@
 [![Documentation Status](https://readthedocs.org/projects/healoxpermissionserver/badge/?version=latest)](https://docs.permissionserver.healox.com/en/latest/?badge=latest)
 
 ASP.NET Core Custom Authorization Policy Provider. A server that uses user roles and permissions for authorizing access to resources.
+
+Please visit the documentation at (https://docs.permissionserver.healox.com/en/latest/)
