@@ -24,7 +24,7 @@ CREATE TABLE [Roles] (
     [Id] uniqueidentifier NOT NULL DEFAULT ((newid())),
     [Name] varchar(256) NOT NULL,
     [Description] varchar(max) NULL,
-    [ParentRoleId] uniqueidentifier NOT NULL DEFAULT ((CONVERT([uniqueidentifier],'00000000-0000-0000-0000-000000000000'))),
+    [ParentRoleId] uniqueidentifier NULL DEFAULT ((CONVERT([uniqueidentifier],'00000000-0000-0000-0000-000000000000'))),
     [ConcurrencyStamp] rowversion NULL,
     CONSTRAINT [XPKRoles] PRIMARY KEY NONCLUSTERED ([Id]),
     CONSTRAINT [Roles_Roles] FOREIGN KEY ([ParentRoleId]) REFERENCES [Roles] ([Id])
@@ -43,7 +43,7 @@ CREATE TABLE [IdentityRoles] (
     [Id] uniqueidentifier NOT NULL DEFAULT ((newid())),
     [Name] varchar(256) NOT NULL,
     [Description] varchar(max) NULL,
-    [RoleId] uniqueidentifier NULL,
+    [RoleId] uniqueidentifier NOT NULL,
     [ConcurrencyStamp] rowversion NULL,
     CONSTRAINT [XPKIdentityRoles] PRIMARY KEY NONCLUSTERED ([Id]),
     CONSTRAINT [Roles_IdentityRoles] FOREIGN KEY ([RoleId]) REFERENCES [Roles] ([Id])
@@ -100,7 +100,7 @@ CREATE UNIQUE CLUSTERED INDEX [XAKUserRoles_UserId_RoleId] ON [UserRoles] ([User
 GO
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20230101161349_PermissionServer', N'7.0.1');
+VALUES (N'20230107153318_PermissionServer', N'7.0.1');
 GO
 
 COMMIT;

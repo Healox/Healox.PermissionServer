@@ -33,7 +33,7 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "(newid())"),
                     Name = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
                     Description = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
-                    ParentRoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "(CONVERT([uniqueidentifier],'00000000-0000-0000-0000-000000000000'))"),
+                    ParentRoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true, defaultValueSql: "(CONVERT([uniqueidentifier],'00000000-0000-0000-0000-000000000000'))"),
                     ConcurrencyStamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
@@ -68,7 +68,7 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "(newid())"),
                     Name = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
                     Description = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
-                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ConcurrencyStamp = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>

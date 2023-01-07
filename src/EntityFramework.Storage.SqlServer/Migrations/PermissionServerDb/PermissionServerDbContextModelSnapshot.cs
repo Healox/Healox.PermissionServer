@@ -22,7 +22,7 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.IdentityRole", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.IdentityRole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,7 +44,7 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                         .IsUnicode(false)
                         .HasColumnType("varchar(256)");
 
-                    b.Property<Guid?>("RoleId")
+                    b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id")
@@ -59,10 +59,10 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
 
                     SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex(new[] { "Name" }, "XAKIdentityRoles_Name"));
 
-                    b.ToTable("IdentityRoles");
+                    b.ToTable("IdentityRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.Permission", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.Permission", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,10 +94,10 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
 
                     SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex(new[] { "Name" }, "XAKPermissions_Name"));
 
-                    b.ToTable("Permissions");
+                    b.ToTable("Permissions", (string)null);
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.Role", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -119,7 +119,7 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                         .IsUnicode(false)
                         .HasColumnType("varchar(256)");
 
-                    b.Property<Guid>("ParentRoleId")
+                    b.Property<Guid?>("ParentRoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("(CONVERT([uniqueidentifier],'00000000-0000-0000-0000-000000000000'))");
@@ -136,10 +136,10 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
 
                     SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex(new[] { "Name" }, "XAKRoles_Name"));
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.RolePermission", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.RolePermission", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,10 +169,10 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
 
                     SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex(new[] { "RoleId", "PermissionId" }, "XAKRolePermissions_RoleId_PermissionId"));
 
-                    b.ToTable("RolePermissions");
+                    b.ToTable("RolePermissions", (string)null);
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.User", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -191,10 +191,10 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
 
                     SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.UserRole", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.UserRole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -224,39 +224,39 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
 
                     SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex(new[] { "UserId", "RoleId" }, "XAKUserRoles_UserId_RoleId"));
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("UserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.IdentityRole", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.IdentityRole", b =>
                 {
-                    b.HasOne("Healox.PermissionServer.Domain.Model.Role", "Role")
+                    b.HasOne("Healox.PermissionServer.EntityFramework.Storage.Entities.Role", "Role")
                         .WithMany("IdentityRoles")
                         .HasForeignKey("RoleId")
+                        .IsRequired()
                         .HasConstraintName("Roles_IdentityRoles");
 
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.Role", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.Role", b =>
                 {
-                    b.HasOne("Healox.PermissionServer.Domain.Model.Role", "ParentRole")
-                        .WithMany("InverseParentRole")
+                    b.HasOne("Healox.PermissionServer.EntityFramework.Storage.Entities.Role", "ParentRole")
+                        .WithMany("ChildRoles")
                         .HasForeignKey("ParentRoleId")
-                        .IsRequired()
                         .HasConstraintName("Roles_Roles");
 
                     b.Navigation("ParentRole");
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.RolePermission", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.RolePermission", b =>
                 {
-                    b.HasOne("Healox.PermissionServer.Domain.Model.Permission", "Permission")
+                    b.HasOne("Healox.PermissionServer.EntityFramework.Storage.Entities.Permission", "Permission")
                         .WithMany("RolePermissions")
                         .HasForeignKey("PermissionId")
                         .IsRequired()
                         .HasConstraintName("Permissions_RolePermissions");
 
-                    b.HasOne("Healox.PermissionServer.Domain.Model.Role", "Role")
+                    b.HasOne("Healox.PermissionServer.EntityFramework.Storage.Entities.Role", "Role")
                         .WithMany("RolePermissions")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -268,15 +268,15 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.UserRole", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.UserRole", b =>
                 {
-                    b.HasOne("Healox.PermissionServer.Domain.Model.Role", "Role")
+                    b.HasOne("Healox.PermissionServer.EntityFramework.Storage.Entities.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .IsRequired()
                         .HasConstraintName("Roles_UserRoles");
 
-                    b.HasOne("Healox.PermissionServer.Domain.Model.User", "User")
+                    b.HasOne("Healox.PermissionServer.EntityFramework.Storage.Entities.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -288,23 +288,23 @@ namespace Healox.PermissionServer.EntityFramework.Storage.SqlServer.Migrations.P
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.Permission", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.Permission", b =>
                 {
                     b.Navigation("RolePermissions");
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.Role", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.Role", b =>
                 {
-                    b.Navigation("IdentityRoles");
+                    b.Navigation("ChildRoles");
 
-                    b.Navigation("InverseParentRole");
+                    b.Navigation("IdentityRoles");
 
                     b.Navigation("RolePermissions");
 
                     b.Navigation("UserRoles");
                 });
 
-            modelBuilder.Entity("Healox.PermissionServer.Domain.Model.User", b =>
+            modelBuilder.Entity("Healox.PermissionServer.EntityFramework.Storage.Entities.User", b =>
                 {
                     b.Navigation("UserRoles");
                 });

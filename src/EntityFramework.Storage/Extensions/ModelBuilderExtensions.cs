@@ -53,6 +53,7 @@ public static class ModelBuilderExtensions
 
             entity.HasOne(d => d.Role).WithMany(p => p.IdentityRoles)
                 .HasForeignKey(d => d.RoleId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Roles_IdentityRoles");
         });
 
@@ -100,9 +101,8 @@ public static class ModelBuilderExtensions
                 .IsUnicode(false);
             entity.Property(e => e.ParentRoleId).HasDefaultValueSql("(CONVERT([uniqueidentifier],'00000000-0000-0000-0000-000000000000'))");
 
-            entity.HasOne(d => d.ParentRole).WithMany(p => p.InverseParentRole)
+            entity.HasOne(d => d.ParentRole).WithMany(p => p.ChildRoles)
                 .HasForeignKey(d => d.ParentRoleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Roles_Roles");
         });
 
