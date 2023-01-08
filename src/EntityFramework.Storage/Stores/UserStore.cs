@@ -19,9 +19,15 @@ public class UserStore : IUserStore
     /// </summary>
     protected readonly IPermissionServerDbContext PermissionServerContext;
 
-    public UserStore(IPermissionServerDbContext permissionServerContext)
+    /// <summary>
+    /// The logger.
+    /// </summary>
+    protected readonly ILogger<UserStore> Logger;
+
+    public UserStore(IPermissionServerDbContext permissionServerContext, ILogger<UserStore> logger)
     {
         PermissionServerContext = permissionServerContext ?? throw new ArgumentNullException(nameof(permissionServerContext));
+        Logger = logger;
     }
 
     public virtual async Task<User> GetUserAsync(string userId)
@@ -46,8 +52,10 @@ public class UserStore : IUserStore
             .LoadAsync();
 
         var model = user.ToModel();
-        
-        return model;
+
+        Logger.LogDebug("{userId} found in database: {userIdFound}", userId, model != null);
+
+        return model!;
     }
 
     //public virtual async Task<bool> HasPermissionAsync(string userId, string permissionName)

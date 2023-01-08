@@ -3,6 +3,7 @@ using Healox.PermissionServer.Domain.Stores;
 using Healox.PermissionServer.EntityFramework.Storage.Interfaces;
 using Healox.PermissionServer.EntityFramework.Storage.Mappers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,15 @@ public class IdentityRoleStore : IIdentityRoleStore
     /// </summary>
     protected readonly IPermissionServerDbContext PermissionServerContext;
 
-    public IdentityRoleStore(IPermissionServerDbContext permissionServerContext)
+    /// <summary>
+    /// The logger.
+    /// </summary>
+    protected readonly ILogger<IdentityRoleStore> Logger;
+
+    public IdentityRoleStore(IPermissionServerDbContext permissionServerContext, ILogger<IdentityRoleStore> logger)
     {
         PermissionServerContext = permissionServerContext ?? throw new ArgumentNullException(nameof(permissionServerContext));
+        Logger = logger;
     }
 
     public virtual async Task<IdentityRole> GetIdentityRoleAsync(string identityRoleName)
@@ -42,7 +49,9 @@ public class IdentityRoleStore : IIdentityRoleStore
 
         var model = identityRole.ToModel();
 
-        return model;
+        Logger.LogDebug("{identityRoleName} found in database: {identityRoleNameFound}", identityRoleName, model != null);
+
+        return model!;
     }
 
     //public Task<IEnumerable<Role?>> GetRolesAndPermissionsAsync(string identityRoleName)

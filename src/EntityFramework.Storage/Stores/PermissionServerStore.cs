@@ -1,6 +1,8 @@
 ﻿using Healox.PermissionServer.Domain.Model;
 using Healox.PermissionServer.Domain.Stores;
 using Healox.PermissionServer.EntityFramework.Storage.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +14,20 @@ namespace Healox.PermissionServer.EntityFramework.Storage.Stores;
 public class PermissionServerStore : IPermissionServerStore
 {
     /// <summary>
-    /// The DbContext.
+    /// The UserStore.
     /// </summary>
-    protected readonly IPermissionServerDbContext PermissionServerContext;
+    protected readonly IUserStore _userStore;
 
-    public PermissionServerStore(IPermissionServerDbContext permissionServerContext)
+    /// <summary>
+    /// The IdenityRoleStore.
+    /// </summary>
+    protected readonly IIdentityRoleStore _identityRoleStore;
+
+
+    public PermissionServerStore(IUserStore userStore, IIdentityRoleStore identityRoleStore)
     {
-        PermissionServerContext = permissionServerContext ?? throw new ArgumentNullException(nameof(permissionServerContext));
+        _userStore = userStore ?? throw new ArgumentNullException(nameof(userStore));
+        _identityRoleStore = identityRoleStore ?? throw new ArgumentNullException(nameof(identityRoleStore));
     }
 
     //public Task<IEnumerable<Role?>> GetRolesAndPermissionsAsync()
@@ -30,16 +39,18 @@ public class PermissionServerStore : IPermissionServerStore
     {
         var roles = new List<Role>();
 
-        var user = await new UserStore(PermissionServerContext).GetUserAsync(userId);
+        // Add roles and permissions directly associated with the user
+        var user = await _userStore.GetUserAsync(userId);
 
         foreach ( var role in user.Roles )
         {
             roles.Add(role);
         }
 
+        // Add roles and permissions indirectly associated with the user through its identity roles
         foreach (var identityRoleName in identityRoleNames)
         {
-            var identityRole = await new IdentityRoleStore(PermissionServerContext).GetIdentityRoleAsync(identityRoleName);
+            var identityRole = await _identityRoleStore.GetIdentityRoleAsync(identityRoleName);
 
             roles.Add(identityRole.Role);
         }
