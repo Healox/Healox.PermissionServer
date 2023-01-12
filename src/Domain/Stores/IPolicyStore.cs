@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Healox.PermissionServer.Domain.Stores;
 
-public interface IPermissionServerStore
+public interface IPolicyStore
 {
     /// <summary>
     /// Get the roles and permissions assigned to current user directly and through his/her identity roles

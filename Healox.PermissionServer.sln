@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{479C76D1-F835-43B6-A9A6-63E9EBE7DFB7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{1C9BF2CB-A273-4566-B04E-D59DB73E8B35}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{1C9BF2CB-A273-4566-B04E-D59DB73E8B35}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B6F4A469-0612-4B4C-93A5-3924E666DD19}"
 EndProject
@@ -36,6 +36,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework.Storage.SqlServer.Seeding", "EntityFramework.Storage.SqlServer.Seeding", "{5826962A-96CB-45DD-A7BD-39ED7D01F042}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.EntityFramework.Storage.SqlServer.Seeding", "src\EntityFramework.Storage.SqlServer.Seeding\Healox.PermissionServer.EntityFramework.Storage.SqlServer.Seeding.csproj", "{D07AF8C1-CFDC-4D6D-A9EE-F4860EA89F0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healox.PermissionServer.Sample.IdentityServer", "sample\Healox.PermissionServer.Sample.IdentityServer\Healox.PermissionServer.Sample.IdentityServer.csproj", "{3ECA12AD-6B40-441F-8469-36CD49A054AC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.Sample.Web", "sample\Healox.PermissionServer.Sample.Web\Healox.PermissionServer.Sample.Web.csproj", "{96822664-B773-499C-8BDF-9D4E93794AA5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Healox.PermissionServer.Sample.Api", "sample\Healox.PermissionServer.Sample.Api\Healox.PermissionServer.Sample.Api.csproj", "{CB418D3D-6A5B-4C63-ADA1-6689355BDB88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +77,18 @@ Global
 		{D07AF8C1-CFDC-4D6D-A9EE-F4860EA89F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D07AF8C1-CFDC-4D6D-A9EE-F4860EA89F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D07AF8C1-CFDC-4D6D-A9EE-F4860EA89F0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ECA12AD-6B40-441F-8469-36CD49A054AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ECA12AD-6B40-441F-8469-36CD49A054AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ECA12AD-6B40-441F-8469-36CD49A054AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ECA12AD-6B40-441F-8469-36CD49A054AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96822664-B773-499C-8BDF-9D4E93794AA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96822664-B773-499C-8BDF-9D4E93794AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96822664-B773-499C-8BDF-9D4E93794AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96822664-B773-499C-8BDF-9D4E93794AA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB418D3D-6A5B-4C63-ADA1-6689355BDB88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB418D3D-6A5B-4C63-ADA1-6689355BDB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB418D3D-6A5B-4C63-ADA1-6689355BDB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB418D3D-6A5B-4C63-ADA1-6689355BDB88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +108,9 @@ Global
 		{B200F855-B22E-4050-BAAB-DA78ADE19885} = {AFF402F7-11BE-4386-8D90-889A7ED804E3}
 		{5826962A-96CB-45DD-A7BD-39ED7D01F042} = {B6F4A469-0612-4B4C-93A5-3924E666DD19}
 		{D07AF8C1-CFDC-4D6D-A9EE-F4860EA89F0B} = {5826962A-96CB-45DD-A7BD-39ED7D01F042}
+		{3ECA12AD-6B40-441F-8469-36CD49A054AC} = {1C9BF2CB-A273-4566-B04E-D59DB73E8B35}
+		{96822664-B773-499C-8BDF-9D4E93794AA5} = {1C9BF2CB-A273-4566-B04E-D59DB73E8B35}
+		{CB418D3D-6A5B-4C63-ADA1-6689355BDB88} = {1C9BF2CB-A273-4566-B04E-D59DB73E8B35}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CFC6C382-110F-40FC-8D13-1383B04A6EDC}

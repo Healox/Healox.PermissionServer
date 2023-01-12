@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Healox.PermissionServer.EntityFramework.Storage.Stores;
 
-public class PermissionServerStore : IPermissionServerStore
+public class PolicyStore : IPolicyStore
 {
     /// <summary>
     /// The UserStore.
@@ -24,7 +24,7 @@ public class PermissionServerStore : IPermissionServerStore
     protected readonly IIdentityRoleStore _identityRoleStore;
 
 
-    public PermissionServerStore(IUserStore userStore, IIdentityRoleStore identityRoleStore)
+    public PolicyStore(IUserStore userStore, IIdentityRoleStore identityRoleStore)
     {
         _userStore = userStore ?? throw new ArgumentNullException(nameof(userStore));
         _identityRoleStore = identityRoleStore ?? throw new ArgumentNullException(nameof(identityRoleStore));

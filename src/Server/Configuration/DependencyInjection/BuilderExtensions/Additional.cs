@@ -34,10 +34,10 @@ public static class PermissionServerBuilderExtensionsAdditional
     /// <typeparam name="T"></typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns></returns>
-    public static IPermissionServerBuilder AddPermissionServerStore<T>(this IPermissionServerBuilder builder)
-       where T : class, IPermissionServerStore
+    public static IPermissionServerBuilder AddPolicyStore<T>(this IPermissionServerBuilder builder)
+       where T : class, IPolicyStore
     {
-        builder.Services.AddTransient<IPermissionServerStore, T>();
+        builder.Services.AddTransient<IPolicyStore, T>();
         builder.Services.AddTransient<IUserStore, UserStore>();
         builder.Services.AddTransient<IIdentityRoleStore, IdentityRoleStore>();
 

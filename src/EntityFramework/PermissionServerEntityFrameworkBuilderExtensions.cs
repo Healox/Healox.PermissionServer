@@ -47,7 +47,7 @@ public static class PermissionServerEntityFrameworkBuilderExtensions
     {
         builder.Services.AddPermissionServerDbContext<TContext>(storeOptionsAction);
 
-        builder.AddPermissionServerStore<PermissionServerStore>();
+        builder.AddPolicyStore<PolicyStore>();
 
         builder.AddCorsPolicyService<CorsPolicyService>();
 
